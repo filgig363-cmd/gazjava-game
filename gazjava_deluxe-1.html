@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ГАЗЯВА: БИТВА ЗА ХРУМКУ</title>
+<style>
+:root{--bg:#0b1020;--panel:#171f35;--line:#344565;--gold:#ffd45b;--mint:#55e0a1;--pink:#ff648c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#34477b 0,#111a31 40%,#090e1b 85%);color:#f7f8ff;font-family:system-ui,Arial,sans-serif}
+button{border:0;border-radius:12px;padding:12px 14px;font-weight:900;cursor:pointer;color:#171321;background:var(--gold);box-shadow:0 4px 0 #a66b20;transition:.12s}
+button:hover{filter:brightness(1.1);transform:translateY(-2px)}button:active{transform:translateY(2px);box-shadow:none}button:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.wrap{max-width:1000px;margin:auto;padding:14px}.hero{position:relative;overflow:hidden;text-align:center;padding:24px 12px 20px;border:1px solid #50638a;border-radius:22px;background:linear-gradient(120deg,#075b54,#1b2861 55%,#60245e);box-shadow:0 15px 50px #0006}
+.hero:before,.hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#ffffff0c;top:-90px}.hero:before{left:5%}.hero:after{right:5%}
+.logo{font-size:clamp(28px,6vw,56px);font-weight:1000;line-height:1;text-shadow:3px 4px 0 #101020,0 0 24px #40dfff;color:#fff}.logo span{color:var(--gold)}.sub{letter-spacing:3px;color:#bafce5;font-size:11px;font-weight:900;margin-top:10px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0;flex-wrap:wrap}.tag{background:#202d48;border:1px solid #445879;border-radius:99px;padding:7px 11px;font-size:12px;color:#dce8ff}
+.resources{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:12px 0}.res,.card{background:linear-gradient(150deg,#1b2741,#121a2c);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 8px 20px #0003}.res{text-align:center}.res .ico{font-size:22px}.res small{display:block;color:#aabbd4;font-size:11px}.res b{font-size:23px;color:var(--gold)}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}.card h2,.card h3{margin:0 0 12px}.battle{background:linear-gradient(145deg,#202d49,#151b2e);position:relative;overflow:hidden}.battlehead{display:flex;justify-content:space-between;align-items:center;gap:8px}.wave{font-size:12px;color:#ffd977;font-weight:900}.arena{display:grid;grid-template-columns:1fr 55px 1fr;align-items:center;gap:8px;text-align:center;padding:20px 0 10px}.fighter{font-size:clamp(54px,10vw,82px);filter:drop-shadow(0 7px 5px #0007);animation:bob 2s ease-in-out infinite}.foe{animation:bob 1.6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-7px) rotate(2deg)}}.vs{font-weight:1000;color:var(--gold);font-size:24px;text-shadow:0 3px #000}.name{font-weight:900;font-size:13px}.hpinfo{display:flex;justify-content:space-between;font-size:11px;color:#c8d5ed;margin:8px 0 4px}.bar{height:11px;border-radius:99px;background:#080d18;overflow:hidden;border:1px solid #52617b}.fill{height:100%;width:100%;background:linear-gradient(90deg,#29c878,#9bf28d);transition:width .25s}.fill.bad{background:linear-gradient(90deg,#ff426e,#ffad61)}.battlemsg{min-height:40px;text-align:center;color:#ffe8a2;font-weight:800;font-size:14px;padding:8px}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.actions button{font-size:13px}.attack{background:linear-gradient(#ff8093,#ff536c);box-shadow:0 4px 0 #9d2948;color:white}.defend{background:#76b8ff;box-shadow:0 4px 0 #3567a5}.mint{background:linear-gradient(#8af4c0,#45d99a);box-shadow:0 4px 0 #19845d}.purple{background:linear-gradient(#d3a1ff,#a879ef);box-shadow:0 4px 0 #63439a;color:#160e26}
+.section{margin-top:12px}.shopgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.item{background:#111a2d;border:1px solid #344565;border-radius:12px;padding:10px;text-align:left}.item b{display:block}.item small{display:block;color:#aabbd4;min-height:30px;margin:4px 0 8px}.item button{width:100%;padding:9px;font-size:12px}
+.quest{display:flex;justify-content:space-between;gap:8px;align-items:center;background:#111a2d;border-radius:11px;padding:10px;margin:7px 0;font-size:12px}.quest strong{color:var(--gold)}.quest button{padding:8px;font-size:11px}
+.log{height:155px;overflow:auto;background:#0b1221;border-radius:12px;padding:10px;font-size:12px;line-height:1.6;color:#c9d8f1}.log div{border-bottom:1px solid #ffffff0b;padding:3px 0}.foot{text-align:center;color:#8ea0bd;font-size:10px;letter-spacing:2px;padding:18px}
+.toast{color:#bdfbd9;font-size:12px;min-height:18px;text-align:center}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.resources{grid-template-columns:repeat(2,1fr)}.wrap{padding:10px}.arena{padding:12px 0}.shopgrid{grid-template-columns:1fr 1fr}}
+</style></head>
+<body><div class="wrap">
+<header class="hero"><div class="logo">🥤 ГАЗЯВА <span>×</span> ХРУМКА 🍪</div><div class="sub">УЛИЧНАЯ АРКАДА · СЕЗОН 1: ДВОРСКАЯ ВОЙНА</div></header>
+<div class="topline"><span class="tag" id="rank">😎 Ранг: Новичок двора</span><span class="tag">💾 Автосохранение включено</span><button id="sound" class="tag" style="cursor:pointer">🔊 Звук: выкл.</button></div>
+<div class="resources">
+<div class="res"><div class="ico">🥤</div><small>ГАЗЯВА</small><b id="soda">12</b></div>
+<div class="res"><div class="ico">🍪</div><small>ХРУМКА</small><b id="snack">4</b></div>
+<div class="res"><div class="ico">🪙</div><small>МОНЕТЫ</small><b id="coins">0</b></div>
+<div class="res"><div class="ico">🏆</div><small>ПОБЕДЫ</small><b id="wins">0</b></div>
+</div>
+<div class="grid">
+<section class="card battle">
+<div class="battlehead"><h2>⚔️ ДВОРСКАЯ РУБКА</h2><span class="wave" id="wave">ВОЛНА 1</span></div>
+<div class="arena">
+<div><div class="fighter" id="hero">😎</div><div class="name">ТВОЙ ОТРЯД</div><div class="hpinfo"><span>❤️ Здоровье</span><b id="hptext">100/100</b></div><div class="bar"><div class="fill" id="hpbar"></div></div></div>
+<div class="vs">VS</div>
+<div><div class="fighter foe" id="enemy">🤓</div><div class="name" id="enemyname">НЕФР-РАЗВЕДЧИК</div><div class="hpinfo"><span>💀 Здоровье</span><b id="ehptext">35/35</b></div><div class="bar"><div class="fill bad" id="ehpbar"></div></div></div>
+</div>
+<div class="battlemsg" id="battlemsg">Нефры заметили твой запас газявы. Покажи, кто тут ровный!</div>
+<div class="actions"><button class="attack" id="hit">👊 МОЩНЫЙ ЗАМАХ</button><button class="defend" id="block">🛡️ ВСТАТЬ В БЛОК</button><button class="mint" id="scavenge">🔎 ЛУТАТЬ ДВОР</button><button class="purple" id="heal">🍪 СЪЕСТЬ ХРУМКУ</button></div>
+<div class="toast" id="toast"></div>
+<div class="section"><h3>🎯 ЕЖЕДНЕВНЫЕ ДВОРСКИЕ ДЕЛА</h3>
+<div class="quest"><span>Победи 3 нефров <strong id="q1">0/3</strong></span><button id="claim1" disabled>Награда +8 🪙</button></div>
+<div class="quest"><span>Собери газяву 4 раза <strong id="q2">0/4</strong></span><button id="claim2" disabled>Награда +5 🍪</button></div>
+</div></section>
+<aside>
+<section class="card"><h2>🛒 ЛАРЁК РОВНЫХ</h2><div class="shopgrid">
+<div class="item"><b>🥊 Перчатки «Арбуз»</b><small>Урон +5 навсегда</small><button id="buyPower">Купить · 12 🪙</button></div>
+<div class="item"><b>🧢 Кепка авторитета</b><small>Максимум здоровья +20</small><button id="buyHp">Купить · 14 🪙</button></div>
+<div class="item"><b>😎 Новый пацан</b><small>Вступает в отряд, урон +8</small><button id="buyGuy">Купить · 18 🪙</button></div>
+<div class="item"><b>🥤 Ящик газявы</b><small>Пополнить запас на 8 бутылок</small><button id="buySoda">Купить · 7 🪙</button></div>
+</div></section>
+<section class="card section"><h3>📻 РАДИО ДВОРА</h3><div class="log" id="log"><div>🔥 Симулятор запущен. Двор ждёт легенду!</div></div><div class="actions"><button class="mint" id="save">💾 СОХРАНИТЬ</button><button id="reset" style="background:#46516b;color:white;box-shadow:0 4px 0 #252d40">↻ СБРОСИТЬ</button></div></section>
+</aside></div>
+<div class="foot">СЛАВА ГАЗЯВЕ · СИЛА ХРУМКЕ · ЧЕСТЬ РОВНЫМ</div></div>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const defaults={soda:12,snack:4,coins:0,wins:0,hp:100,maxhp:100,power:12,members:1,wave:1,ehp:35,emax:35,guard:false,over:false,scavenges:0,q1done:false,q2done:false,sound:false};
+let s={...defaults};try{let old=JSON.parse(localStorage.getItem('gazjava-save'));if(old)s={...s,...old}}catch(e){}
+const enemies=[['🤓','НЕФР-РАЗВЕДЧИК'],['🧌','НЕФР-ГРОМИЛА'],['👓','БОТАН-БОСС'],['🤡','КОРОЛЬ НЕФРОВ'],['👾','НЕФР-КИБОРГ']];
+function log(t){let d=document.createElement('div');d.textContent='› '+t;$('log').prepend(d);while($('log').children.length>35)$('log').lastChild.remove()}
+function say(t){$('battlemsg').textContent=t;$('toast').textContent=t}
+function save(){localStorage.setItem('gazjava-save',JSON.stringify(s));$('toast').textContent='Прогресс сохранён на этом устройстве!'}
+function enemyInfo(){return enemies[(s.wave-1)%enemies.length]}
+function draw(){
+$('soda').textContent=s.soda;$('snack').textContent=s.snack;$('coins').textContent=s.coins;$('wins').textContent=s.wins;
+$('hptext').textContent=s.hp+'/'+s.maxhp;$('hpbar').style.width=(s.hp/s.maxhp*100)+'%';
+$('ehptext').textContent=s.ehp+'/'+s.emax;$('ehpbar').style.width=(s.ehp/s.emax*100)+'%';
+$('wave').textContent='ВОЛНА '+s.wave;$('enemy').textContent=enemyInfo()[0];$('enemyname').textContent=enemyInfo()[1];
+$('hero').textContent='😎'+(s.members>1?'🧢'.repeat(Math.min(3,s.members-1)):'');
+$('rank').textContent='😎 Ранг: '+(s.wins>=20?'Легенда двора':s.wins>=10?'Авторитет':s.wins>=5?'Свой пацан':'Новичок двора');
+$('q1').textContent=Math.min(3,s.wins%4+(s.q1done?3:0))+'/3';$('q2').textContent=Math.min(4,s.scavenges%5+(s.q2done?4:0))+'/4';
+$('claim1').disabled=s.wins<3||s.q1done;$('claim2').disabled=s.scavenges<4||s.q2done;
+$('hit').disabled=s.over;$('block').disabled=s.over;$('scavenge').disabled=s.over;$('heal').disabled=s.snack<1||s.hp>=s.maxhp;
+$('buyPower').disabled=s.coins<12;$('buyHp').disabled=s.coins<14;$('buyGuy').disabled=s.coins<18;$('buySoda').disabled=s.coins<7;
+$('sound').textContent=s.sound?'🔊 Звук: вкл.':'🔇 Звук: выкл.';
+}
+function persist(){save();draw()}
+function enemyTurn(){if(s.over)return;if(s.guard){s.guard=false;log('🛡️ Блок поглотил удар!');say('Красиво заблокировал!');return}
+let damage=Math.max(3,Math.floor(5+s.wave*1.7-Math.random()*3));s.hp=Math.max(0,s.hp-damage);say('Нефр врезал на '+damage+' урона!');log('💥 Получено '+damage+' урона.');if(s.hp===0){s.over=true;say('💀 Отряд вырублен! Подкрепись хрумкой или сбрось игру.');log('Отряд пал. Легенды тоже иногда отдыхают.');}}
+function win(){s.wins++;s.coins+=8+Math.min(12,s.wave);s.soda+=2;s.snack+=1;log('🏆 Победа над нефрами! +монеты, +2 газявы, +1 хрумка.');say('ПОБЕДА! Двор скандирует твоё имя!');if(s.wave%5===0){s.coins+=15;s.snack+=2;s.maxhp+=15;s.hp=Math.min(s.maxhp,s.hp+35);log('👑 БОСС ВОЛНЫ ПОВЕРЖЕН! Бонусный лут +15 монет и +2 хрумки!')}s.wave++;s.emax=30+s.wave*11;s.ehp=s.emax;s.over=false;save()}
+function attack(){if(s.over)return;let damage=s.power+Math.floor(Math.random()*7);if(Math.random()<.13){damage*=2;say('💥 КРИТИЧЕСКИЙ УДАР! '+damage+' урона!')}else say('👊 Ты нанёс '+damage+' урона!');s.ehp=Math.max(0,s.ehp-damage);if(!s.ehp)win();else enemyTurn();persist()}
+$('hit').onclick=attack;
+$('block').onclick=()=>{if(s.over)return;s.guard=true;log('🛡️ Ты приготовился блокировать следующий удар.');say('Ждёшь атаку нефра...');enemyTurn();persist()};
+$('scavenge').onclick=()=>{if(s.over)return;s.soda+=2+Math.floor(Math.random()*3);s.coins+=2;s.scavenges++;let bonus=Math.random();if(bonus<.15){s.snack++;log('✨ Редкий лут! Нашёл хрумку!')}else log('🔎 Обшарил двор: нашёл газяву и 2 монеты.');say('Лут найден!');enemyTurn();persist()};
+$('heal').onclick=()=>{if(!s.snack||s.hp===s.maxhp)return;s.snack--;let h=Math.min(35,s.maxhp-s.hp);s.hp+=h;s.over=false;log('🍪 Хрумка восстановила '+h+' HP.');say('Силы вернулись!');persist()};
+$('buyPower').onclick=()=>{s.coins-=12;s.power+=5;log('🥊 Куплены перчатки: урон +5.');persist()};
+$('buyHp').onclick=()=>{s.coins-=14;s.maxhp+=20;s.hp+=20;log('🧢 Кепка авторитета: здоровье +20.');persist()};
+$('buyGuy').onclick=()=>{s.coins-=18;s.members++;s.power+=8;log('😎 Новый ровный в команде! Сила +8.');persist()};
+$('buySoda').onclick=()=>{s.coins-=7;s.soda+=8;log('🥤 Куплен ящик газявы: +8.');persist()};
+$('claim1').onclick=()=>{if(s.wins<3||s.q1done)return;s.coins+=8;s.q1done=true;log('🎁 Награда за победы получена: +8 монет!');persist()};
+$('claim2').onclick=()=>{if(s.scavenges<4||s.q2done)return;s.snack+=5;s.q2done=true;log('🎁 Награда за сбор получена: +5 хрумок!');persist()};
+$('save').onclick=()=>{save();log('💾 Игра сохранена.')};
+$('reset').onclick=()=>{if(!confirm('Точно начать заново? Текущий прогресс будет стёрт.'))return;s={...defaults};$('log').innerHTML='';log('Новая история ровного пацана начинается!');persist()};
+$('sound').onclick=()=>{s.sound=!s.sound;draw();say(s.sound?'Звук включён (визуальный режим).':'Звук выключен.')};
+draw();
+})();
+</script></body></html>
